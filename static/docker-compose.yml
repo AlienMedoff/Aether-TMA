@@ -1,0 +1,23 @@
+version: '3.8'
+
+services:
+  aether-runtime:
+    build: .
+    container_name: aether-runtime
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./static:/app/static
+      # Если планируешь сохранять историю сессий локально
+      - ./sessions:/app/sessions 
+    environment:
+      - PYTHONUNBUFFERED=1
+      - PORT=8000
+    restart: always
+
+  # Redis для управления очередями и памятью (если захочешь расширять до v2.0)
+  redis:
+    image: redis:alpine
+    container_name: aether-redis
+    ports:
+      - "6379:6379"
