@@ -1,18 +1,26 @@
+# 🌌 Aether-TMA: Universal Agentic Runtime
+
+> **Stop building brittle scrapers. Start giving your LLMs reliable hands and eyes.**
+
+**Aether-TMA** is a vendor-agnostic high-performance runtime designed to connect any LLM (GPT-4, Claude, Gemini, Llama) directly to **Telegram Mini Apps** and complex web interfaces. It transforms raw UI into a programmable, observable environment for autonomous agents.
+
+---
+
 ## 🏛 Architecture
 
-Your LLM (GPT-4/Claude/Llama)
-       |
-       | [ JSON Control Protocol ]
-       v
-+-----------------------------+
-|      Aether-TMA Runtime     |  <-- FastAPI Engine
-|-----------------------------|
-| [State] [Memory] [Control]  |  <-- Redis Persistence
-+-----------------------------+
-       |
-       | [ Playwright + Bridge.js ]
-       v
-[ Telegram Mini App / Web UI ]   <-- Isolated Sandbox
-       |
-       +---> [ Live Monitor ]    <-- WebSockets (Real-time Vision)# Aether-TMA
-Aether-TMA is a universal Agentic Runtime that turns any UI (Telegram Mini Apps, Web) into a programmable environment for AI. It provides LLMs with "eyes and hands" via isolated Playwright containers, persistent memory, and an observability bridge. Designed for autonomous agents where APIs don't exist. UI is the new API. 🌌🚀
+```text
+       [ YOUR LLM ] (GPT-4 / Claude / Gemini / Llama)
+             |
+             | [ JSON Control Protocol v2.0 ]
+             v
+    ___________________________
+   |    Aether-TMA Runtime     |  <-- FastAPI Engine
+   |---------------------------|
+   | [Control] [State] [Memory]|  <-- Redis Persistence
+   |___________________________|
+             |
+             | [ Injected Bridge.js ]
+             v
+    [ Telegram Mini App / UI ]    <-- Isolated Chromium Sandbox
+             |
+             +---> [ Live Observability ] (WebSockets Stream)
